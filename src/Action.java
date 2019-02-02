@@ -20,7 +20,7 @@ public class Action extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String str=e.getActionCommand();
 		
-		if(str =="統計機能") {
+		if(str =="IO Graph") {
 			Statistics stat =new Statistics();
 			try {
 				stat.run();
