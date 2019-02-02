@@ -1,5 +1,3 @@
-
-
 public class Arp {
 	String len;
 	String htype;

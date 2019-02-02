@@ -15,25 +15,28 @@ public class Con_DB {
 		try {
 		conn=null;
 		
-			conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/DB_Con", 
-					"root", "NETWORK1@root");						//windows name root@localhost pz NETWORK@1root
-			//pz -> NA1@root 
 			/*conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/DB_Con", 
-					"root", "NA1@root");	*/
+					"root", "NETWORK1@root");			*/			//windows name root@localhost pz NETWORK@1root
+			//pz -> NA1@root 
+			conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/DB_Con", 
+					"root", "NA1@root");	
 			stmt =conn.createStatement();
 			sta=conn.createStatement();
-			System.out.println("接続成功\n"+stmt+"\n"+sta);
+			System.out.println("----------接続成功-----------");
 		}catch(SQLException e) {
 			System.out.println("*****connerr*****");
 			e.printStackTrace();
 		}
 	}
 	public void Sql_In(int id,String time,String to,String from,String protocol,int length,String info) throws Exception{//table he ataiwo ireruyo
-		sql="insert into DB_Con(Id,GetDate,Packet_To,Packet_From,Packet_Protocol,Packet_Length,Packet_Info)"
+		sql="insert into packet(Id,GetDate,Packet_To,Packet_From,Packet_Protocol,Packet_Length,Packet_Info)"
 				+ " values("+id+",'"+time+"','"+to+"','"+from+"','"+protocol+"',"+length+",'"+info+"')";
 		int num=sta.executeUpdate(sql);
-		System.out.println("kousinsaretagyou="+num);
+		System.out.println("更新された行="+num);
 		
+	}
+	public void Sql_clear() throws SQLException {
+		sta.executeUpdate("truncate table packet;");
 	}
 	public void Sql_Out()throws Exception {
 		/*Packet instance printout*/
@@ -63,7 +66,7 @@ public class Con_DB {
 		try {
             if (null != conn) {
                 conn.close();
-                System.out.println("接続終了");
+                System.out.println("----------接続終了----------");
             }
         } catch (SQLException e) {
             e.printStackTrace();

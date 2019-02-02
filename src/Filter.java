@@ -41,21 +41,13 @@ public class Filter extends JFrame{
 		JPanel pr2 = new JPanel();
 		
 		ckbox = new JCheckBox[15];
-		ckbox[0] =new JCheckBox("IPv4",true);
+		ckbox[0] =new JCheckBox("TCP",true);
 		ckbox[1] =new JCheckBox("ARP",true);
-		ckbox[2] =new JCheckBox("RARP",true);
-		ckbox[3] =new JCheckBox("AARP",true);
-		ckbox[4] =new JCheckBox("AT",true);
-		ckbox[5] =new JCheckBox("VMTP",true);
-		ckbox[6] =new JCheckBox("IPX",true);
-		ckbox[7] =new JCheckBox("SNMP",true);
-		ckbox[8] =new JCheckBox("NB",true);
-		ckbox[9] =new JCheckBox("XTP",true);
-		ckbox[10] =new JCheckBox("IPv6",true);
-		ckbox[11] =new JCheckBox("PPoE",true);
-		ckbox[12] =new JCheckBox("EAP",true);
-		ckbox[13] =new JCheckBox("LoopBack",true);
-		ckbox[14] =new JCheckBox("UDP",true);
+		ckbox[2] =new JCheckBox("IPv6",true);
+		ckbox[3] =new JCheckBox("UDP",true);
+		ckbox[4] =new JCheckBox("ICMP",true);
+		ckbox[5] =new JCheckBox("8899",true);
+		ckbox[6] =new JCheckBox("EAP",true);
 		
 		pl.add(ckbox[0]);
 		pl.add(ckbox[1]);
@@ -64,14 +56,14 @@ public class Filter extends JFrame{
 		pl.add(ckbox[4]);
 		pl.add(ckbox[5]);
 		pl.add(ckbox[6]);
-		pl.add(ckbox[7]);
+		/*pl.add(ckbox[7]);
 		pl.add(ckbox[8]);
 		pl.add(ckbox[9]);
 		pl.add(ckbox[10]);
 		pl.add(ckbox[11]);
 		pl.add(ckbox[12]);
 		pl.add(ckbox[13]);
-		pl.add(ckbox[14]);
+		pl.add(ckbox[14]);*/
 		
 		JLabel label1=new JLabel("アドレス入力欄");
 		JButton button = new JButton("適用");

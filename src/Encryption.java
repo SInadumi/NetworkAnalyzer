@@ -6,20 +6,20 @@ import java.util.Base64;
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-public class Cipher_1{ 
+public class Encryption{ 
 		private Cipher encrypter;
 		private Cipher decrypter;//いれもん
 		
 		
 		//static byte bytes[] = new byte [16];
 		
-		private static final String KEY="inadumisyundesuy";
+		private static final String KEY="passwordpassword";
 		private static final String ALGORITHM="AES"; 		//暗号アルゴリズム:AES
 		private static final String MODE="CBC";				//暗号化モード:CBC
 		private static final String PADDING="PKCS5Padding";	//パディング方式:
 		
 		//コンストラクタ 鍵と暗号化時の初期値を渡す
-		public Cipher_1()throws Exception{ 
+		public Encryption()throws Exception{ 
 		   
 			SecureRandom random = SecureRandom.getInstance("SHA1PRNG");//暗号アルゴリズムLinuxは"NativePRNG"がデフォルト
 			byte seed[]=random.generateSeed(16);						//ブロック先頭の初期値IVを設定;

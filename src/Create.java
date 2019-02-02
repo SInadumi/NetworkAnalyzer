@@ -15,6 +15,8 @@ public class Create  {
 	static long cu_time = 0; //現在時間
 	static Statistics st = new Statistics();
 	
+	static int no=1;
+	
 	public static void analyze() throws IOException {
 		BufferedReader br=Func.getProcess();
 //		if(br==null)System.out.print("null exe");
@@ -75,19 +77,35 @@ public class Create  {
 					st.cpanel.validate();
 					st.cpanel.repaint();*/
 					//mysql
-					//Con_DB db=new Con_DB();
-					//db.Open();
-					System.out.println(/*Integer.parseInt(Packet.win[0])*/
-							Packet.win[1]
+					Con_DB db=new Con_DB();
+					Encryption en= new Encryption();
+					int len=0;
+					String from="";
+					String to="";
+					String info="";
+					db.Open();
+				/*	System.out.println(Integer.parseInt(Packet.win[0])
+							+Packet.win[1]
 							+Packet.win[2]
 							+Packet.win[3]
 							+Packet.win[4]
-							/*+Integer.parseInt(Packet.win[5])*/
-							+Packet.win[6]);
-					//db.Sql_In(Integer.parseInt(Packet.win[0]),Packet.win[1],Packet.win[2],Packet.win[3],Packet.win[4],Integer.parseInt(Packet.win[5]),Packet.win[6]);
-					
-					
-					//db.Fin();
+							+Integer.parseInt(Packet.win[5])
+							+Packet.win[6]);*/
+					from=en.encrypto(Packet.win[2]);
+					to=en.encrypto(Packet.win[3]);
+					len=Integer.parseInt(Packet.win[5]);
+					info=en.encrypto(Packet.win[6]);
+					System.out.println("暗号化されたパケット");
+					System.out.println("No. "+no+"\n"
+							+"Time    "+Packet.win[1]+"\n"
+							+"From    "+from+"\n"
+							+"To      "+to+"\n"
+							+"Protocol"+Packet.win[4]+"\n"
+							+"Length  "+len+"\n"
+							+"Info    "+info);
+					db.Sql_In(no,Packet.win[1],from,to,Packet.win[4],len,info);
+					db.Fin();
+					no++;
 					
 				}
 				else System.out.print("no str");

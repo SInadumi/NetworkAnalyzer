@@ -1,4 +1,3 @@
-
 public class UDP {
 	String fport,tport,len,csum;
 	UDP(String s,String ss,String sss,String ssss){
@@ -8,7 +7,7 @@ public class UDP {
 		csum=ssss;
 	}
 	String makeString() {
-		return "\nUser Datagram Protocol\n"
+		return "\n\nUser Datagram Protocol\n"
 				+ "Source port:"+fport+""
 				+ "\nDestination port:"+tport+""
 						+ "\nLength:"+len+""

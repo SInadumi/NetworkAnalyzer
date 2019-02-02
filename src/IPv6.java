@@ -1,16 +1,15 @@
-
-
 public class IPv6 {
 	String version;
 	String plen;
 	String nh,hl;
 	String source,dest;
-	void show(){
-		System.out.println("ver:"+version);
-		System.out.println("ver:"+plen);
-		System.out.println("ver:"+nh);
-		System.out.println("ver:"+hl);
-		System.out.println("ver:"+source);
-		System.out.println("ver:"+dest);
+	String makeString(){
+		return "\n\nInternet Protocol ver 6\n"+
+				"Version:"+version+
+					"\nPayload Length:"+plen
+						+"\nNext Header:"+nh
+							+"\nHop Limit:"+hl
+								+"\nSource Address:"+source
+									+"\nDestination Address:"+dest;
 	}
 }

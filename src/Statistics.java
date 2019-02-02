@@ -48,7 +48,7 @@ public class Statistics extends JFrame {
 		//xyPlot = new XYPlot(dataset, xAxis, yAxis, renderer);
 		//IOChart = new JFreeChart("IO/Graph",(Plot)xyPlot);
 		IOChart = ChartFactory.createXYLineChart(
-				"IO/Graph",
+				"I/O Graph",
 				"時間[s]",
 				"Packet数[個/s]",
 				dataset,

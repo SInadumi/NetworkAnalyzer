@@ -6,6 +6,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.Box;
@@ -14,7 +15,6 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -70,6 +70,16 @@ public class Main_window extends JFrame implements WindowListener {
 
 	public static void main(String[] args) {
 		try {
+			
+			Con_DB db=new Con_DB();
+			db.Open();
+			try {
+				db.Sql_clear();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			db.Fin();
 			// 初めのデバイス選択
 			// db.Open();
 			Device dev = new Device();
@@ -176,23 +186,45 @@ public class Main_window extends JFrame implements WindowListener {
 		// セルがダブルクリックされたか
 		table.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent me) {
-				//表示確認
-				System.out.println("--------------------------");
-				System.out.println(p_content);				
-				System.out.println(p_exp);
-				System.out.println("--------------------------");
+				String p_pcontent="1 ";
+				String p_pexp="";
 				
 				if (me.getClickCount() == 2) {
 					Point pt = me.getPoint();
 					int idx = table.rowAtPoint(pt);
 					if (idx >= 0) {
 						int row = table.convertRowIndexToModel(idx);
-						String str = String.format("%s (%s)", model.getValueAt(row, 0), model.getValueAt(row, 1),
+						/*String str = String.format("%s (%s)", model.getValueAt(row, 0), model.getValueAt(row, 1),
 								model.getValueAt(row, 2), model.getValueAt(row, 3), model.getValueAt(row, 4),
-								model.getValueAt(row, 5), model.getValueAt(row, 6));
-						PacketFlow flow = new PacketFlow();
-						flow.Paint_flow();
-						JOptionPane.showMessageDialog(table, str, "title", JOptionPane.INFORMATION_MESSAGE);
+								model.getValueAt(row, 5), model.getValueAt(row, 6));*/
+//						String hello = String.format("%s行目が選択されました", model.getValueAt(row, 0));
+						int c_p=1;
+						int c_c=1;
+						for (String s : p_content) {
+							p_pcontent=p_pcontent.concat(s.concat(s+" "));
+							if((c_p%8)==0) {
+								c_c++;
+								p_pcontent=p_pcontent.concat("\n"+c_c+" ");
+								
+							}
+							c_p++;
+						}
+						p_pexp=p_exp;
+						p_pexp=p_pexp.replaceFirst("null","<html><body>");
+						p_pexp=p_pexp.replace("\n","<br >");
+						p_pexp=p_pexp.concat("</body></html>");
+						System.out.println("---------------------------------------");
+						System.out.println("CONTENTS\n"+p_pcontent);
+						System.out.println("EXPs\n"+p_pexp);
+						System.out.println("---------------------------------------");
+						new PacketFlow(p_pexp,p_pcontent);
+						p_pexp="";
+						p_pcontent="";
+						p_exp="";
+						p_content.clear();
+						
+//						flow.Paint_flow();
+						//JOptionPane.showMessageDialog(table, str, "title", JOptionPane.INFORMATION_MESSAGE);
 
 					}
 				}
@@ -230,7 +262,7 @@ public class Main_window extends JFrame implements WindowListener {
 		CMenu[5].setIcon(reload_icon);
 
 		Item[0][0] = new JMenuItem("フィルタ");
-		Item[1][0] = new JMenuItem("統計機能");
+		Item[1][0] = new JMenuItem("IO Graph");
 		Item[2][0] = new JMenuItem("ヘルプ");
 		//Item[2][1] = new JMenuItem("使用方法");
 		Item[3][0] = new JMenuItem("start");
